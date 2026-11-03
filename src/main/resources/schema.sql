@@ -36,3 +36,40 @@ INSERT INTO producto VALUES(8, 'Portátil Yoga 520', 559, 2);
 INSERT INTO producto VALUES(9, 'Portátil Ideapd 320', 444, 2);
 INSERT INTO producto VALUES(10, 'Impresora HP Deskjet 3720', 59.99, 3);
 INSERT INTO producto VALUES(11, 'Impresora HP Laserjet Pro M26nw', 180, 3);
+
+CREATE TABLE IF NOT EXISTS cliente (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido1 VARCHAR(100) NOT NULL,
+    apellido2 VARCHAR(100),
+    ciudad VARCHAR(100),
+    categoría INT UNSIGNED
+);
+
+CREATE TABLE IF NOT EXISTS comercial (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido1 VARCHAR(100) NOT NULL,
+    apellido2 VARCHAR(100),
+    comisión FLOAT
+);
+
+INSERT INTO cliente VALUES(1, 'Aarón', 'Rivero', 'Gómez', 'Almería', 100);
+INSERT INTO cliente VALUES(2, 'Adela', 'Salas', 'Díaz', 'Granada', 200);
+INSERT INTO cliente VALUES(3, 'Adolfo', 'Rubio', 'Flores', 'Sevilla', NULL);
+INSERT INTO cliente VALUES(4, 'Adrián', 'Suárez', NULL, 'Jaén', 300);
+INSERT INTO cliente VALUES(5, 'Marcos', 'Loyola', 'Méndez', 'Almería', 200);
+INSERT INTO cliente VALUES(6, 'María', 'Santana', 'Moreno', 'Cádiz', 100);
+INSERT INTO cliente VALUES(7, 'Pilar', 'Ruiz', NULL, 'Sevilla', 300);
+INSERT INTO cliente VALUES(8, 'Pepe', 'Ruiz', 'Santana', 'Huelva', 200);
+INSERT INTO cliente VALUES(9, 'Guillermo', 'López', 'Gómez', 'Granada', 225);
+INSERT INTO cliente VALUES(10, 'Daniel', 'Santana', 'Loyola', 'Sevilla', 125);
+
+INSERT INTO comercial VALUES(1, 'Daniel', 'Sáez', 'Vega', 0.15);
+INSERT INTO comercial VALUES(2, 'Juan', 'Gómez', 'López', 0.13);
+INSERT INTO comercial VALUES(3, 'Diego', 'Flores', 'Salas', 0.11);
+INSERT INTO comercial VALUES(4, 'Marta', 'Herrera', 'Gil', 0.14);
+INSERT INTO comercial VALUES(5, 'Antonio', 'Carretero', 'Ortega', 0.12);
+INSERT INTO comercial VALUES(6, 'Manuel', 'Domínguez', 'Hernández', 0.13);
+INSERT INTO comercial VALUES(7, 'Antonio', 'Vega', 'Hernández', 0.11);
+INSERT INTO comercial VALUES(8, 'Alfredo', 'Ruiz', 'Flores', 0.05);

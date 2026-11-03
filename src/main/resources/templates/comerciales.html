@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comerciales</title>
+    <!-- Bootstrap CSS Grid -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+</head>
+<body class="bg-light">
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">Gestión Ventas & Tienda</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/clientes}">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold" th:href="@{/comerciales}">Comerciales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/fabricantes}">Fabricantes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor principal con grid Bootstrap -->
+    <div class="container bg-white p-4 rounded shadow-sm">
+        
+        <!-- Fila de cabecera con título y botón de crear (Grid Bootstrap) -->
+        <div class="row align-items-center py-3 border-bottom mb-3">
+            <div class="col-md-6 col-12">
+                <h1 class="h2 mb-0 text-success">Comerciales</h1>
+            </div>
+            <div class="col-md-6 col-12 text-md-end text-start mt-2 mt-md-0">
+                <a th:href="@{/comerciales/crear}" class="btn btn-success">Crear Comercial</a>
+            </div>
+        </div>
+
+        <!-- Fila cabecera de la tabla / grid (Bootstrap Grid) -->
+        <div class="row border-bottom py-2 fw-bold bg-light text-secondary">
+            <div class="col-1">ID</div>
+            <div class="col-2">Nombre</div>
+            <div class="col-2">1º Apellido</div>
+            <div class="col-2">2º Apellido</div>
+            <div class="col-2">Comisión</div>
+            <div class="col-3 text-center">Acción</div>
+        </div>
+
+        <!-- Filas de datos usando th:each en el Grid Bootstrap -->
+        <div class="row border-bottom py-2 align-items-center" th:each="comercial : ${listaComerciales}">
+            <div class="col-1 fw-semibold" th:text="${comercial.id}">1</div>
+            <div class="col-2" th:text="${comercial.nombre}">Nombre</div>
+            <div class="col-2" th:text="${comercial.apellido1}">Apellido1</div>
+            <div class="col-2 text-muted" th:text="${comercial.apellido2 != null ? comercial.apellido2 : '-'}">Apellido2</div>
+            <div class="col-2" th:text="${comercial.comision != null ? #numbers.formatDecimal(comercial.comision, 1, 2) : '-'}">0.15</div>
+            <div class="col-3 text-center">
+                <div class="d-flex justify-content-center gap-1">
+                    <a th:href="@{/comerciales/__${comercial.id}__}" class="btn btn-success btn-sm">Ver Detalle</a>
+                    <a th:href="@{/comerciales/editar/__${comercial.id}__}" class="btn btn-primary btn-sm">Editar</a>
+                    <form th:action="@{/comerciales/borrar/__${comercial.id}__}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje si la lista está vacía -->
+        <div class="row py-4 text-center text-muted" th:if="${#lists.isEmpty(listaComerciales)}">
+            <div class="col-12">No hay comerciales registrados actualmente.</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
