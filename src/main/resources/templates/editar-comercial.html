@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Comercial</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
 </head>
 <body class="bg-light">
 
-    <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <!-- Barra de navegación con Grid Bootstrap -->
+    <nav class="navbar navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">Gestión Ventas & Tienda</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/clientes}">Clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active fw-bold" th:href="@{/comerciales}">Comerciales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/fabricantes}">Fabricantes</a>
-                    </li>
-                </ul>
-            </div>
+            <a class="navbar-brand" href="comerciales.html" th:href="@{/comerciales}">Gestión Ventas & Tienda</a>
+            <ul class="navbar-nav d-flex flex-row gap-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="clientes.html" th:href="@{/clientes}">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fw-bold" href="comerciales.html" th:href="@{/comerciales}">Comerciales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="fabricantes.html" th:href="@{/fabricantes}">Fabricantes</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
     <!-- Contenedor formulario con grid Bootstrap -->
     <div class="container bg-white p-4 rounded shadow-sm" style="max-width: 800px;">
-        <form th:action="@{/comerciales/editar/__${comercial.id}__}" th:object="${comercial}" method="post">
+        <form action="comerciales.html" th:action="@{/comerciales/editar/__${comercial.id}__}" th:object="${comercial}" method="post">
 
             <!-- Cabecera en Grid -->
             <div class="row align-items-center py-3 border-bottom mb-4">
@@ -38,7 +37,7 @@
                 </div>
                 <div class="col-4 text-end">
                     <button type="submit" class="btn btn-success">Guardar</button>
-                    <a th:href="@{/comerciales}" class="btn btn-secondary ms-1">Volver</a>
+                    <a href="comerciales.html" th:href="@{/comerciales}" class="btn btn-secondary ms-1">Volver</a>
                 </div>
             </div>
 
@@ -46,42 +45,42 @@
             <div class="row mb-3 align-items-center">
                 <label for="id" class="col-sm-3 col-form-label fw-bold">ID</label>
                 <div class="col-sm-9">
-                    <input type="text" id="id" class="form-control-plaintext bg-light border rounded px-3" th:field="*{id}" readonly="readonly"/>
+                    <input type="text" id="id" class="form-control-plaintext bg-light border rounded px-3" name="id" th:field="*{id}" value="1" readonly="readonly"/>
                 </div>
             </div>
 
             <div class="row mb-3 align-items-center">
                 <label for="nombre" class="col-sm-3 col-form-label fw-bold">Nombre</label>
                 <div class="col-sm-9">
-                    <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required="required"/>
+                    <input type="text" id="nombre" class="form-control" name="nombre" th:field="*{nombre}" value="Daniel" required="required"/>
                 </div>
             </div>
 
             <div class="row mb-3 align-items-center">
                 <label for="apellido1" class="col-sm-3 col-form-label fw-bold">Primer Apellido</label>
                 <div class="col-sm-9">
-                    <input type="text" id="apellido1" class="form-control" th:field="*{apellido1}" required="required"/>
+                    <input type="text" id="apellido1" class="form-control" name="apellido1" th:field="*{apellido1}" value="Sáez" required="required"/>
                 </div>
             </div>
 
             <div class="row mb-3 align-items-center">
                 <label for="apellido2" class="col-sm-3 col-form-label fw-bold">Segundo Apellido</label>
                 <div class="col-sm-9">
-                    <input type="text" id="apellido2" class="form-control" th:field="*{apellido2}"/>
+                    <input type="text" id="apellido2" class="form-control" name="apellido2" th:field="*{apellido2}" value="Vega"/>
                 </div>
             </div>
 
             <div class="row mb-4 align-items-center">
                 <label for="comision" class="col-sm-3 col-form-label fw-bold">Comisión</label>
                 <div class="col-sm-9">
-                    <input type="number" step="0.01" min="0" max="1" id="comision" class="form-control" th:field="*{comision}"/>
+                    <input type="number" step="0.01" min="0" max="1" id="comision" class="form-control" name="comision" th:field="*{comision}" value="0.15"/>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-9 offset-sm-3">
                     <button type="submit" class="btn btn-success px-4">Guardar Cambios</button>
-                    <a th:href="@{/comerciales}" class="btn btn-outline-secondary ms-2">Cancelar</a>
+                    <a href="comerciales.html" th:href="@{/comerciales}" class="btn btn-outline-secondary ms-2">Cancelar</a>
                 </div>
             </div>
 
@@ -90,4 +89,3 @@
 
 </body>
 </html>
-
